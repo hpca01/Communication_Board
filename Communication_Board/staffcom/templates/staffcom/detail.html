@@ -16,7 +16,7 @@
 <div class='container'>
 	<div class = 'page-header'>
 		<h2>{{ post.title }}
-		<small>{{post.date}}</small></h2>
+		<small>{{post.date}} created by {{post.created_by}}</small></h2>
 		<br>
 		<div class ='well well-sm'><h5>{{ post.descr | safe }}</h5></div>
 		{% if user.is_authenticated %}

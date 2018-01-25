@@ -14,6 +14,7 @@ class Comm_Item(models.Model):
 	descr = HTMLField()
 	date = models.DateField(auto_now=True)
 	visible = models.BooleanField(default=True)
+	created_by = models.ForeignKey(User, default = "", null=True, blank=True)
 
 	def __str__(self):
 		return self.title

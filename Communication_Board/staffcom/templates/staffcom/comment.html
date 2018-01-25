@@ -1,6 +1,11 @@
 {% extends 'staffcom/mainpage.html' %}
 
 {% block content %}
+<div class="alert alert-danger" role="alert">
+	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	<span class="sr-only">Error:</span>
+		Remember: This is a one way comment, it cannot be edited or deleted to maintain integrity of the system.
+</div>
 <div class='container'>
 	<form action = "" method="POST">
 	{% csrf_token %}

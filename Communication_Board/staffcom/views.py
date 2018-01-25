@@ -98,6 +98,8 @@ def form_view(request):
 		form = CommForm(request.POST)
 		if form.is_valid():
 			view = form.cleaned_data.get('comm_type')
+			usn = request.user.get_username()
+			form.instance.created_by=User.objects.get(username=usn)
 			urls_view = {'Inventory':'inventory', 'Chemo':'chemo', 
 			'Operation':'ops', 'HomeIV':'homeiv'}
 			form.save(commit = True)
