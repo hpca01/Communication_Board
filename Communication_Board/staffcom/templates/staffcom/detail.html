@@ -1,0 +1,52 @@
+{% extends 'staffcom/mainpage.html' %}
+{% load app_filters %}
+
+{% block styles %}
+.panel-body{
+	padding: 5px;
+}
+.panel-heading{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;
+}
+{% endblock %}
+
+{% block content %}
+<div class='container'>
+	<div class = 'page-header'>
+		<h2>{{ post.title }}
+		<small>{{post.date}}</small></h2>
+		<br>
+		<div class ='well well-sm'><h5>{{ post.descr | safe }}</h5></div>
+		{% if user.is_authenticated %}
+		<a class="btn btn-info" href="{% url 'comment_new' pk=post.pk %}" role='button'>
+		Add A Comment</a>
+		<a class="btn btn-success" href="{% url 'update_communication' pk=post.pk %}" role='button'>
+		Update Communication</a>
+			{% if user.is_superuser %}
+				<a class="btn btn-danger" href="{% url 'delete_communication' pk=post.pk %}" role='button'>
+				Delete
+				</a>
+			{% endif %}
+		{% endif %}
+	</div>
+	<p>
+	{% for comment in comments %}
+	<div class = 'row'>
+		<div class="col-sm-10">
+			<div class="panel panel-success">
+			<div class="panel-heading">
+			<strong>{{ comment.username_id | get_usn }}</strong>
+			<span class="text-muted">{{ comment.date_time }}</span>
+			</div>
+			<div class="panel-body">
+			{{comment.content | safe }}
+			</div><!-- /panel-body -->
+			</div><!-- /panel panel-default -->
+		</div><!-- /col-sm-5 -->
+	</div>
+	{% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'expirations/index.html' %}
+
+{% block content %}
+  <div id = 'list_view'>
+  {% include 'expirations/list.html' %}
+  </div>
+{% endblock %}
+{% block javascript %}
+<script>
+$(document).ready(function(){
+  var input = $("#searchText")
+    input.keyup(function() {
+    $.ajax({
+      type: "GET",
+      url: "{% url 'drug_list' %}",
+      data: {'searchText' : input.val()},
+      success: function(data){
+        $("#list_view").html(data)
+        }
+    })
+    });
+})
+</script>
+{% endblock %}

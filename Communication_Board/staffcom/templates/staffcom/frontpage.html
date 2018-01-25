@@ -1,0 +1,29 @@
+{% extends 'staffcom/mainpage.html' %}
+
+{% block content %}
+<div class='container'> 
+	<div class = 'row' id ='list_view'>
+		{% include 'staffcom/list.html' %}
+	</div>
+</div>	
+{% endblock %}
+
+{% block javascript %}
+<script>
+$(document).ready(function(){
+  var input = $("#searchText")
+    input.keyup(function() {
+    $.ajax({
+      type: "GET",
+      url: "{% url 'search_view' %}",
+      data: {'searchText' : input.val()},
+      success: function(data){
+        $("#list_view").html(data)
+        }
+    })
+    });
+})
+</script>
+{% endblock %}
+
+

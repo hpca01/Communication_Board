@@ -1,0 +1,46 @@
+<h2>
+{% if user.is_authenticated %}
+<small>Welcome, {{ username }}</small>
+<br>
+{% endif %}
+{{ viewname }}</h2>
+	<!-- {{ inv_com }} -->
+
+	{% for com in inv_com %}
+
+		<div class ='col-md-12'>
+			<div class="panel panel-default">
+					<div class="panel-heading">
+						<a href="{% url 'details' pk=com.pk %}">
+					    	<h2 class="panel-title">{{ com.title }} -- <small>{{com.date}}</small></h2> 
+					    </a>
+					</div>
+				<div class="panel-body">
+					<div class="panel panel-default">
+					  <div class="panel-body">
+					    <small>{{ com.num_comments }} comments, last comment: {{ com.earliest_comment }}</small>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	{% endfor %}
+
+{% if inv_com.number %}
+<div class="pagination">
+    <span class="step-links">
+        {% if inv_com.has_previous %}
+            <a href="?page={{ inv_com.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ inv_com.number }} of {{ inv_com.paginator.num_pages }}.
+        </span>
+
+        {% if inv_com.has_next %}
+            <a href="?page={{ inv_com.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}

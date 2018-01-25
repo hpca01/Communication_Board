@@ -1,0 +1,20 @@
+{% extends 'staffcom/mainpage.html' %}
+{% block content %}
+<div class='container'>
+	<div class = 'row'>
+		<div class="col-sm-5">
+			<div class = "panel panel-danger">
+				<div class="panel-heading">
+			    	<h3 class="panel-title">Are you sure you want to delete the following post:</h3>
+			    </div>
+			    <div class="panel-body">
+				<h4><strong>{{ object }}</strong></h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	<form action="" method="POST">
+		{% csrf_token %}
+	<input class ="btn btn-info btn-lg" type="submit" value="Confirm"/>
+</div>
+{% endblock %}

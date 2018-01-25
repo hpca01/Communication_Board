@@ -1,0 +1,24 @@
+{% extends 'Communication_Board/base.html' %}
+{% block content %}
+<h1>Welcome to RWC Inpatient Pharmacy Page</h1>
+<p>Choose from the options below </p>
+{% endblock %}
+{% block content-secondary %}
+<div class = 'row'>
+	<div class="col-md-4">
+		<h2>Expirations</h2>
+		<p>This is where all the expiration dates in the Inpatient pharmacy are tracked once per month. It is also useful to do an inventory search. <b> LOGIN REQUIRED </b></p>
+		<p><a class="btn btn-default" href="{% url 'drug_list' %}" role="button">View details &raquo;</a></p>
+	</div>
+	<div class="col-md-4">
+		<h2>Inventory Communication</h2>
+		<p>This is where pharmacy personnel(mainly inventory acquisition personnel) posts information about current shortages and updates. It is also a place for VOV order verification personnel to obtain knowledge on common shortages and verification norms at RWC.</p>
+		<p><a class="btn btn-default" href="{% url 'inventory' %}" role="button">View details &raquo;</a></p>
+	</div>
+	<div class="col-md-4">
+		<h2>Staff Communications</h2>
+		<p>This is for <b>staff use only.</b> Hand-offs as well as operational modifications and reminders are to be posted here by staff. <b> LOGIN REQUIRED</b></p>
+		<p><a class="btn btn-default" href="{% url 'ops' %}" role="button">View details &raquo;</a></p>
+	</div>
+</div>
+{% endblock %}
