@@ -8,6 +8,9 @@ from django.template import Context
 
 from django.http import JsonResponse
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import Drug, Expiration, Barcode
 from .forms import DrugForm, ExpirationForm, BarcodeForm
 
@@ -19,7 +22,7 @@ from django.views.generic import (TemplateView,ListView,
 
 # Create your views here.
 
-class DrugListView(ListView):
+class DrugListView(LoginRequiredMixin,ListView):
     context_object_name = 'drugs'
     model = Drug
     template_name = 'expirations/drug_list.html'

@@ -83,6 +83,11 @@ class UpdatePostView(LoginRequiredMixin, UpdateView):
 	def get_success_url(self):
 		return reverse('details',kwargs={'pk' : self.kwargs.get('pk')})
 
+	def form_valid(self, form):
+		self.object.created_by = User.objects.get(username = self.request.user.get_username())
+		self.object.save()
+		return redirect('details', pk = self.object.id)
+
 
 class DeletePostView(LoginRequiredMixin,DeleteView):
 	model = Comm_Item
